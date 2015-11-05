@@ -1,3 +1,3 @@
 # EEEBook
-SNP Project for room and equipment booking
-Mobile application
+SNP Project for room and equipment booking android application.
+
