@@ -3,6 +3,7 @@ package snp.com.eeebook;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +16,9 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.parse.ParseObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,8 +30,8 @@ import java.util.List;
  */
 public class BookingActivity extends ActionBarActivity implements AdapterView.OnItemSelectedListener, DatePicker.OnDateChangedListener, View.OnClickListener, TimePicker.OnTimeChangedListener{
     private Spinner spinner1;
-    private TextView roomDate, roomDateLabel, roomTimelabel, roomTime;
-    private Button dateSelect, timeSelect, makeBooking;
+    private TextView roomDate, roomDateLabel, roomTimelabel, roomTime, roomnumber, toDateLabel, toDateView;
+    private Button dateSelect, timeSelect, makeBooking, toDate;
     private Toolbar toolbar;
     private TimePicker timePicker, timePicker2;
     private int fromhod = 0, frommin = 0, tohod = 0, tomin = 0;
@@ -43,11 +47,144 @@ public class BookingActivity extends ActionBarActivity implements AdapterView.On
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if(spinner1.getSelectedItemId() == 0) {
+            roomnumber.setVisibility(View.INVISIBLE);
+            roomnumber.setText("");
+            dateSelect.setVisibility(View.INVISIBLE);
+            roomDate.setVisibility(View.INVISIBLE);
+            dateSelect.setVisibility(View.INVISIBLE);
+            roomDateLabel.setVisibility(View.INVISIBLE);
+            timeSelect.setVisibility(View.INVISIBLE);
+            roomTimelabel.setVisibility(View.INVISIBLE);
+            roomTime.setVisibility(View.INVISIBLE);
+            roomnumber.setVisibility(View.INVISIBLE);
+            toDate.setVisibility(View.INVISIBLE);
+            toDateLabel.setVisibility(View.INVISIBLE);
+            toDateView.setVisibility(View.INVISIBLE);
+        }
         if(spinner1.getSelectedItemId() == 1) {
+
+            final CharSequence[] list = {"Room 1", "Room 2", "Room 3", "Room 4"};
+
+            AlertDialog.Builder modeSelect = new AlertDialog.Builder(BookingActivity.this);
+            modeSelect.setTitle("Select Mode");
+            modeSelect.setItems(list, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (which == 0) {
+                        //Toast.makeText(BookingActivity.this, "Room 1", Toast.LENGTH_SHORT).show();
+                        roomnumber.setText("Room 1");
+                        roomnumber.setVisibility(View.VISIBLE);
+                    }
+                    if (which == 1) {
+                        //Toast.makeText(BookingActivity.this, "Room 2", Toast.LENGTH_SHORT).show();
+                        roomnumber.setText("Room 2");
+                        roomnumber.setVisibility(View.VISIBLE);
+                    }
+                    if (which == 2) {
+                        //Toast.makeText(BookingActivity.this, "Room 3", Toast.LENGTH_SHORT).show();
+                        roomnumber.setText("Room 3");
+                        roomnumber.setVisibility(View.VISIBLE);
+                    }
+                    if (which == 3) {
+                        //Toast.makeText(BookingActivity.this, "Room 4", Toast.LENGTH_SHORT).show();
+                        roomnumber.setText("Room 4");
+                        roomnumber.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+
+            modeSelect.setPositiveButton("Set", null);
+            modeSelect.setNegativeButton("Cancel", null);
+
+            modeSelect.create().show();
+
+            toDate.setVisibility(View.INVISIBLE);
+            toDateLabel.setVisibility(View.INVISIBLE);
+            toDateView.setVisibility(View.INVISIBLE);
+
+            dateSelect.setText("Select Date");
             dateSelect.setVisibility(View.VISIBLE);
             dateSelect.setOnClickListener(BookingActivity.this);
             timeSelect.setVisibility(View.VISIBLE);
             timeSelect.setOnClickListener(BookingActivity.this); //check listener
+        }
+
+        if(spinner1.getSelectedItemId() == 2) {
+            final CharSequence[] list = {"Laptop", "Android tablet", "Raspberry Pi", "Micro-controller", "Breadboard", "Projector"};
+
+            AlertDialog.Builder eqSelect = new AlertDialog.Builder(BookingActivity.this);
+            eqSelect.setTitle("Select Equipment");
+            eqSelect.setItems(list, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (which == 0) {
+                        roomnumber.setText("Laptop");
+                        roomnumber.setVisibility(View.VISIBLE);
+                    }
+                    if (which == 1) {
+                        roomnumber.setText("Android tablet");
+                        roomnumber.setVisibility(View.VISIBLE);
+                    }
+                    if (which == 2) {
+                        roomnumber.setText("Raspberry Pi");
+                        roomnumber.setVisibility(View.VISIBLE);
+                    }
+                    if (which == 3) {
+                        roomnumber.setText("Micro-controller");
+                        roomnumber.setVisibility(View.VISIBLE);
+                    }
+                    if (which == 4) {
+                        roomnumber.setText("Breadboard");
+                        roomnumber.setVisibility(View.VISIBLE);
+                    }
+                    if (which == 5) {
+                        roomnumber.setText("Projector");
+                        roomnumber.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+
+            eqSelect.setPositiveButton("Set", null);
+            eqSelect.setNegativeButton("Cancel", null);
+
+            eqSelect.create().show();
+
+            timeSelect.setVisibility(View.INVISIBLE);
+            roomTime.setVisibility(View.INVISIBLE);
+            roomTimelabel.setVisibility(View.INVISIBLE);
+
+            dateSelect.setVisibility(View.VISIBLE);
+            dateSelect.setText("SELECT FROM DATE");
+            dateSelect.setOnClickListener(BookingActivity.this);
+
+            toDate.setVisibility(View.VISIBLE);
+            toDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(BookingActivity.this);
+                    DatePicker picker = new DatePicker(BookingActivity.this);
+                    picker.setCalendarViewShown(false);
+                    builder.setTitle("Select Date");
+                    builder.setView(picker);
+                    builder.setNegativeButton("Cancel", null);
+                    builder.setPositiveButton("Set", null);
+
+                    Calendar calendar = Calendar.getInstance();
+                    picker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
+                        @Override
+                        public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                            toDateLabel.setVisibility(View.VISIBLE);
+                            toDateView.setVisibility(View.VISIBLE);
+                            toDateView.setText(dayOfMonth + " / " + monthOfYear + " / " + year );
+                        }
+                    });
+
+                    builder.show();
+
+
+                }
+            });
         }
     }
 
@@ -78,6 +215,26 @@ public class BookingActivity extends ActionBarActivity implements AdapterView.On
         roomTime = (TextView) findViewById(R.id.roomTime);
         roomTime.setVisibility(View.INVISIBLE);
         makeBooking = (Button) findViewById(R.id.makeBooking);
+        roomnumber = (TextView) findViewById(R.id.roomnumber);
+        roomnumber.setVisibility(View.INVISIBLE);
+        toDate = (Button) findViewById(R.id.toDate);
+        toDate.setVisibility(View.INVISIBLE);
+        toDateLabel = (TextView) findViewById(R.id.toDateLabel);
+        toDateLabel.setVisibility(View.INVISIBLE);
+        toDateView = (TextView) findViewById(R.id.toDateView);
+        toDateView.setVisibility(View.INVISIBLE);
+
+        makeBooking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String date = roomDate.getText().toString();
+                String time = roomTime.getText().toString();
+                String item = roomnumber.getText().toString();
+                ParseObject bookingObject = new ParseObject("RoomBookings");
+                bookingObject.put("", "bar");
+                bookingObject.saveInBackground();
+            }
+        });
     }
 
     public void addItemsOnSpinner1() {

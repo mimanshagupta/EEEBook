@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="snp.com.eeebook.ChooseMode"
+    android:background="@drawable/blg">
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"
+        />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/makeBooking"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Make Booking"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/ColorPrimaryDark"
+            android:textColor="@color/whitetext"/>
+
+        <Button
+            android:id="@+id/viewBooking"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="View Room Booking"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/ColorPrimaryDark"
+            android:textColor="@color/whitetext"/>
+
+        <Button
+            android:id="@+id/viewEquipmentBooking"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="View Equipment Booking"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/ColorPrimaryDark"
+            android:textColor="@color/whitetext"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

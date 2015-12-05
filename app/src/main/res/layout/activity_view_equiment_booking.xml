@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="snp.com.eeebook.ViewBooking"
+    android:background="@drawable/blg">
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"
+        />
+
+    <LinearLayout
+        android:id="@+id/form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:layout_below="@+id/tool_bar">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="60dp">
+
+            <Button
+                android:id="@+id/dateSelectView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select From Date"
+                android:layout_marginTop="20dp"
+                style="@style/AppTheme"
+                />
+
+            <TextView
+                android:id="@+id/viewDate"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:background="@color/whitetext"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="60dp">
+
+            <Button
+                android:id="@+id/dateSelectView2"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Select To Date"
+                android:layout_marginTop="20dp"
+                style="@style/AppTheme"
+                />
+
+            <TextView
+                android:id="@+id/viewDate2"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:background="@color/whitetext"/>
+
+        </LinearLayout>
+
+
+        <Spinner
+            android:id="@+id/roomSelect"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="100dp"
+            style="@style/AppTheme"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView"
+        android:layout_below="@+id/form"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="73dp" />
+
+
+</RelativeLayout>

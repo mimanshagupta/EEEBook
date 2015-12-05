@@ -2,4 +2,5 @@
         <resources>
             <color name="ColorPrimary">#8BC34A</color>
             <color name="ColorPrimaryDark">#689F38</color>
+            <color name="whitetext">#FFFFFF</color>
         </resources>

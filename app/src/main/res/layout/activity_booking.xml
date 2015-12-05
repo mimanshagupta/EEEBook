@@ -9,6 +9,7 @@
         />
 
     <LinearLayout
+        android:id="@+id/everything"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -30,13 +31,27 @@
             android:layout_marginBottom="20dp"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-        <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:layout_marginLeft="20dp"
-            style="@style/AppTheme"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:layout_marginLeft="20dp"
+                style="@style/AppTheme"/>
+
+            <TextView
+                android:id="@+id/roomnumber"
+                android:layout_width="170dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="30dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+        </LinearLayout>
 
         <Button
             android:id="@+id/dateSelect"
@@ -113,6 +128,44 @@
                 />
 
         </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/toDate"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Select To Date"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="315dp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="360dp">
+
+        <TextView
+            android:id="@+id/toDateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:text="To Date Selected:"
+            style="@style/AppTheme"
+            />
+
+
+        <TextView
+            android:id="@+id/toDateView"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            style="@style/AppTheme"
+            />
 
     </LinearLayout>
 
